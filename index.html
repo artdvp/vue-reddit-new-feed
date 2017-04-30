@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Vue Reddit news</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>  
+  <div id="main">
+    <div class="contianer" >
+      <subreddit name="science"></subreddit>
+      <subreddit name="aww"></subreddit>
+      <subreddit name="space"></subreddit>
+      <subreddit name="gifs"></subreddit>
+      <subreddit name="food"></subreddit>
+      <subreddit name="comics"></subreddit>
+      <subreddit name="sports"></subreddit>
+      <subreddit name="InternetIsBeautiful"></subreddit> Games
+    </div>
+    </div>
+      <template id="subreddit">
+        <div class="subreddit">
+          <h2>{{name | uppercase}}</h2>
+          <ul class="item-list">
+            <li v-for="obj in posts">
+              <post :item="obj"></post>
+            </li>
+          </ul>
+        </div>
+      </template>
+      <template id="post">
+        <div class="post">
+          <a :href="item.data.url" :style="getImageBackgroundCSS(item.data.thumbnail)" target="_blank" class="thumbnail"></a>
+        <div class="details">
+          <a :href="item.data.url" :title="item.data.title" target="_blank" class="title">
+          {{item.data.title | truncate}}</a>
+        <div class="action-buttons">
+          <a :href="'http://reddit.com'+ item.data.permalink" title="Vote">
+            <i class="material-icons">thumbs_up_down</i>
+          {{item.data.score}}</a>
+          <a :href="'http://reddit.com' + item.data.permalink " title="Go to discussion">
+            <i class="material-icons">forum</i>
+          {{item.data.num_comments}}</a>
+        </div>
+        </div>
+        </div>
+      </template>
+      <script type="text/javascript" src="assets/js/vue.js"></script>
+      <script type="text/javascript" src="assets/js/vue-resource.js"></script>
+      <script type="text/javascript" src="assets/js/script.js"></script>
+  </body>
+</html>
