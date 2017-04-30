@@ -26,14 +26,14 @@ var post = Vue.component('post', {
   template: '#post',
   props: ['item'],
   methods: {
-    getImageBackground: function(img){
-      if(img && img!= 'self' && img!='nsfw'){
-        return  img ;
-      }
-      else{
-        return 'assets/img/placeholder.png';
-      }
-    }
+    getImageBackgroundCSS: function(img) {
+            if(img && img!='self' && img!='nsfw') {
+                return 'background-image: url(' + img + ')';    
+            }
+            else {
+                return 'background-image: url(assets/img/placeholder.png)'; 
+            }
+        }       
   }
 });
 

@@ -19,6 +19,11 @@ html{
 	background-color: #f9f9f9;
 }
 
+.text-header{
+	padding-top: 50px;
+	text-align : center;
+}
+
 
 .container{
 	padding: 27px 20px;

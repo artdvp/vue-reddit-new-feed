@@ -2,41 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
     <title>Vue Reddit news - Artdvp</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Bootstrap css-->
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
 	  <!-- Propeller css -->
-    <link href="assets/css/propeller.min.css" rel="stylesheet">
-    <!--<link rel="stylesheet" href="assets/css/style.css">-->
+   <!-- <link href="assets/css/propeller.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="assets/css/styles.css">
   </head>
   <body>  
+  <div class="text-header">
+      <h2>Reddit New Feed</h2>
+  </div>
   <div id="main">
-    <div class="contianer" >
-      <subreddit name="science"></subreddit>
-      <subreddit name="aww"></subreddit>
-      <subreddit name="space"></subreddit>
-      <subreddit name="gifs"></subreddit>
-      <subreddit name="food"></subreddit>
-      <subreddit name="comics"></subreddit>
-      <subreddit name="sports"></subreddit>
-      <subreddit name="InternetIsBeautiful"></subreddit> 
+    <div class="container">
+      <subreddit name="hacking"></subreddit>
+      <subreddit name="Javascript"></subreddit>
+      <subreddit name="webdev"></subreddit>
+      <subreddit name="Frontend"></subreddit>
+     
+      <subreddit name="wordpress"></subreddit>
+      <subreddit name="hacker"></subreddit>
+      <subreddit name="hackernews"></subreddit>
+      <subreddit name="web_design"></subreddit> 
+       </div>
+    </div>
       <!-- 
       Games
       bestof
-      hacking
-      hacker
-      hackernews
+      --hacking
+      --hacker
+      --hackernews
       HowToHack
       blackhat
       CEH
-      wevdev
-      web_designn
-      Frontend
+      --wevdev
+      --web_designn
+      --Frontend
       CSS
-      Javascript
+      --Javascript
       Coding
       WebHosting
       OpenSource
@@ -49,7 +55,7 @@
       Jquery
       angular2
       reactjs
-      wordpress
+      --wordpress
       sass
       reddithax
       DailyProgrammer
@@ -69,33 +75,38 @@
       WebSecurity
       ProWordPress
       -->
-    </div>
-    </div>
+   
+   
   
-      <template id="subreddit">
-        <div class="subreddit row">
-          <h2>{{name | uppercase}}</h2>
-          <div v-for="obj in posts">
-            <post :item="obj"></post>
-          </div>
+   <template id="subreddit">
+        <div class="subreddit">
+            <h2>{{ name | uppercase }}</h2>
+            <ul class="item-list">
+                <li v-for="obj in posts">
+                    <post :item="obj"></post>
+                </li>
+            </ul>
         </div>
-      </template>
+    </template>
+    
       <template id="post">
-        
-           <div class="col-md-4 card-type post">
-            <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth pmd-card-custom-form">
-              <div class="pmd-card-media">
-                <div class="media-body">
-                  <h4 class="pmd-card-title-text">
-                  <a :href="item.data.url" :title="item.data.title" target="_blank" class="title">{{item.data.title | truncate}}</a>
-                  </h4>
-                <div class="media-right media-middle"> <a :href="item.data.url">
-                 <img :src="getImageBackground(item.data.thumbnail)" width="80" height="80"> </a> </div>
-              </div>
-              <div class="pmd-card-actions">
-                <a :href="'http://reddit.com'+ item.data.permalink" title="Vote" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons">thumbs_up_down</i>{{item.data.score}}</a>
-                <a :href="'http://reddit.com' + item.data.permalink " title="Go to discussion" type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default"><i class="material-icons">forum</i>{{item.data.num_comments}}</a>
-              </div>
+          <div class="post">
+            <a :href="item.data.url" :style="getImageBackgroundCSS(item.data.thumbnail)" target="_blank" class="thumbnail"></a>
+            <div class="details">
+                <a :href="item.data.url" :title="item.data.title" target="_blank" class="title">
+                    {{ item.data.title | truncate}}
+                </a>            
+                <div class="action-buttons">
+                    <a :href="'http://reddit.com' + item.data.permalink " title="Vote">
+                        <i class="material-icons">thumbs_up_down</i>
+                        {{item.data.score}}
+                    </a>
+                    <a :href="'http://reddit.com' + item.data.permalink " title="Go to discussion">
+                        <i class="material-icons">forum</i>
+                        {{item.data.num_comments}}
+                    </a>
+                </div>
+
             </div>
         </div>
       </template>
