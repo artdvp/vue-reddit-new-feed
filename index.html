@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Vue Reddit news</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vue Reddit news - Artdvp</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Bootstrap css-->
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	  <!-- Propeller css -->
+    <link href="assets/css/propeller.min.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="assets/css/style.css">-->
   </head>
   <body>  
   <div id="main">
@@ -16,34 +22,81 @@
       <subreddit name="food"></subreddit>
       <subreddit name="comics"></subreddit>
       <subreddit name="sports"></subreddit>
-      <subreddit name="InternetIsBeautiful"></subreddit> Games
+      <subreddit name="InternetIsBeautiful"></subreddit> 
+      <!-- 
+      Games
+      bestof
+      hacking
+      hacker
+      hackernews
+      HowToHack
+      blackhat
+      CEH
+      wevdev
+      web_designn
+      Frontend
+      CSS
+      Javascript
+      Coding
+      WebHosting
+      OpenSource
+      LearnWebDev
+      LearnJavascript
+      BadCode
+      PHP
+      Python
+      Node
+      Jquery
+      angular2
+      reactjs
+      wordpress
+      sass
+      reddithax
+      DailyProgrammer
+      learnprogramming
+      web_programming
+      AskComputerScience
+      ProgrammerHumor
+      browsers
+      webgl
+      html5
+      html5games
+      servers
+      devops
+      SVG
+      DevList
+      SysAdmin
+      WebSecurity
+      ProWordPress
+      -->
     </div>
     </div>
+  
       <template id="subreddit">
-        <div class="subreddit">
+        <div class="subreddit row">
           <h2>{{name | uppercase}}</h2>
-          <ul class="item-list">
-            <li v-for="obj in posts">
-              <post :item="obj"></post>
-            </li>
-          </ul>
+          <div v-for="obj in posts">
+            <post :item="obj"></post>
+          </div>
         </div>
       </template>
       <template id="post">
-        <div class="post">
-          <a :href="item.data.url" :style="getImageBackgroundCSS(item.data.thumbnail)" target="_blank" class="thumbnail"></a>
-        <div class="details">
-          <a :href="item.data.url" :title="item.data.title" target="_blank" class="title">
-          {{item.data.title | truncate}}</a>
-        <div class="action-buttons">
-          <a :href="'http://reddit.com'+ item.data.permalink" title="Vote">
-            <i class="material-icons">thumbs_up_down</i>
-          {{item.data.score}}</a>
-          <a :href="'http://reddit.com' + item.data.permalink " title="Go to discussion">
-            <i class="material-icons">forum</i>
-          {{item.data.num_comments}}</a>
-        </div>
-        </div>
+        
+           <div class="col-md-4 card-type post">
+            <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth pmd-card-custom-form">
+              <div class="pmd-card-media">
+                <div class="media-body">
+                  <h4 class="pmd-card-title-text">
+                  <a :href="item.data.url" :title="item.data.title" target="_blank" class="title">{{item.data.title | truncate}}</a>
+                  </h4>
+                <div class="media-right media-middle"> <a :href="item.data.url">
+                 <img :src="getImageBackground(item.data.thumbnail)" width="80" height="80"> </a> </div>
+              </div>
+              <div class="pmd-card-actions">
+                <a :href="'http://reddit.com'+ item.data.permalink" title="Vote" class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons">thumbs_up_down</i>{{item.data.score}}</a>
+                <a :href="'http://reddit.com' + item.data.permalink " title="Go to discussion" type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default"><i class="material-icons">forum</i>{{item.data.num_comments}}</a>
+              </div>
+            </div>
         </div>
       </template>
       <script type="text/javascript" src="assets/js/vue.js"></script>

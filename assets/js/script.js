@@ -9,7 +9,7 @@ var subreddit = Vue.component('subreddit', {
     }
   },
   created: function(){
-    this.$http.get("https://www.reddit.com/r/" + this.name + "/top.json?limit=5")
+    this.$http.get("https://www.reddit.com/r/" + this.name + "/top.json?limit=6")
     .then(function(resp){
       console.log(resp);
       if(typeof resp.data == 'string'){
@@ -26,12 +26,12 @@ var post = Vue.component('post', {
   template: '#post',
   props: ['item'],
   methods: {
-    getImageBackgroundCSS: function(img){
+    getImageBackground: function(img){
       if(img && img!= 'self' && img!='nsfw'){
-        return 'background-image: url('+ img +')';
+        return  img ;
       }
       else{
-        return 'background-image: url(assets/img/placeholder.png)';
+        return 'assets/img/placeholder.png';
       }
     }
   }
